@@ -1,30 +1,28 @@
-# 🚆 Railway Mission Control - AI Traffic Optimizer
+# 🚆 Railway Mission Control - Howrah-Kharagpur Line
 
-A cutting-edge AI Agentic System for Train Traffic Optimization with a world-class mission control dashboard. This system provides real-time train monitoring, AI-powered recommendations, and interactive simulation capabilities for railway network optimization.
+A comprehensive AI-powered Railway Traffic Management System featuring real-time train monitoring, intelligent recommendations, and interactive signaling visualization for the Howrah-Kharagpur railway line (100km corridor).
 
 ## 🌟 Features
 
-### 🎯 Core Features
-- **Interactive Live Map**: Real-time train tracking with status indicators
-- **AI Recommendations Panel**: Smart suggestions from multiple AI agents
-- **Real-time Status Dashboard**: KPI cards, charts, and network analytics
-- **What-If Simulator**: Test scenarios before implementation
-- **Alerts & Notifications**: Real-time system alerts and warnings
-- **Mission Control Interface**: Dark, futuristic UI inspired by real control rooms
+### 🚂 Real-Time Railway Operations
+- **Interactive Railway Signaling**: Live visualization of Howrah-Kharagpur line with 23 active trains
+- **Live Train Tracking**: Real-time positions, speeds, delays, and status updates
+- **Signal Management**: Automatic signal state updates based on train proximity
+- **Track Section Monitoring**: 8 track sections with occupancy and status visualization
+- **Station Operations**: 9 stations from Howrah Junction to Kharagpur with platform details
 
-### 🤖 AI Agents
-- **Data Collector**: Processes real-time train and network data
-- **Schedule Optimizer**: Optimizes train schedules and routing
-- **Conflict Resolver**: Resolves scheduling conflicts and bottlenecks
-- **Congestion Predictor**: Predicts and prevents network congestion
-- **System Coordinator**: Coordinates all agent activities
+### 🤖 AI-Powered Recommendations
+- **HWH-KGP Traffic Controller**: Priority signal management for delayed trains
+- **KGP Section Optimizer**: Route optimization and congestion management  
+- **Track Maintenance AI**: Proactive maintenance scheduling and alerts
+- **EMU Schedule Optimizer**: Local train coordination and platform management
+- **Real-time Impact Analysis**: Delay reduction, congestion relief, and savings calculations
 
-### 📊 Analytics & Monitoring
-- Network performance metrics (delays, throughput, congestion)
-- Train status distribution and trends
-- Congestion hotspot analysis
-- 24-hour network throughput tracking
-- AI agent performance monitoring
+### 📊 Live Network Analytics
+- **Performance Metrics**: On-time percentage, average delays, train utilization
+- **Infrastructure Status**: Track section occupancy, signal states, maintenance alerts
+- **AI Agent Monitoring**: Live status of all AI optimization agents
+- **Network Overview**: Comprehensive dashboard accessible via header dropdown
 
 ## 🛠 Tech Stack
 
@@ -35,13 +33,8 @@ A cutting-edge AI Agentic System for Train Traffic Optimization with a world-cla
 - **State Management**: Zustand for global state
 - **Charts**: Recharts for data visualization
 - **Animations**: Framer Motion for smooth transitions
-- **Map**: Custom map implementation (Mapbox GL JS ready)
-
-### Backend (Coming Soon)
-- **API**: FastAPI with WebSocket support
-- **AI Agents**: LangGraph/AutoGen framework
-- **Database**: PostgreSQL with real-time subscriptions
-- **Message Queue**: Redis for agent communication
+- **Visualization**: Custom SVG-based railway signaling with pan/zoom controls
+- **Real-time Updates**: Live data simulation with 5-second refresh intervals
 
 ## 🚀 Getting Started
 
@@ -53,8 +46,8 @@ A cutting-edge AI Agentic System for Train Traffic Optimization with a world-cla
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd train_window
+   git clone https://github.com/Tarun200511/Flowcode-Crazy-bro.git
+   cd Flowcode-Crazy-bro
    ```
 
 2. **Install dependencies**
@@ -62,61 +55,59 @@ A cutting-edge AI Agentic System for Train Traffic Optimization with a world-cla
    npm install
    ```
 
-3. **Set up environment variables** (Optional)
-   ```bash
-   # Create .env.local file
-   NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=your_mapbox_token_here
-   ```
-
-4. **Run the development server**
+3. **Run the development server**
    ```bash
    npm run dev
    ```
 
-5. **Open your browser**
+4. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
-## 🎮 Demo Mode
+## 🚂 Howrah-Kharagpur Line Data
 
-The application comes with comprehensive demo data including:
-- **8 Active Trains** across major Indian routes (Mumbai-Delhi, Chennai-Kolkata, etc.)
-- **8 Major Stations** (New Delhi, Mumbai CST, Chennai Central, etc.)
-- **Multiple Track Sections** with different congestion levels
-- **AI Recommendations** generated in real-time
-- **System Alerts** for weather, maintenance, and emergencies
+The system operates with real-time data from the Howrah-Kharagpur railway corridor:
 
-### Sample Trains
-- Mumbai Rajdhani (Delayed - 15 min)
-- Shatabdi Express (On Time)
-- Kerala Express (On Time)
-- Howrah Mail (Delayed - 25 min)
-- Chennai Rajdhani (On Time)
-- Firozpur Janata (Emergency Stop)
+### 🚉 Stations (9 Total)
+- **HWH** - Howrah Junction (0 km) - 23 platforms
+- **SHE** - Shalimar (8 km) - 4 platforms  
+- **ULU** - Uluberia (25 km) - 3 platforms
+- **BGA** - Bagnan (32 km) - 2 platforms
+- **MCA** - Mecheda (45 km) - 3 platforms
+- **TMZ** - Tamluk (58 km) - 2 platforms
+- **HLZ** - Haldia (72 km) - 2 platforms
+- **MDN** - Midnapore (85 km) - 3 platforms
+- **KGP** - Kharagpur (100 km) - 10 platforms
+
+### 🚆 Live Trains (23 Active)
+- **Express Trains**: Howrah Mail, Hirakhand Express, Kamakhya Express, Ispat Express
+- **EMU Locals**: Multiple suburban services between HWH-KGP
+- **Goods Trains**: Freight services with maintenance monitoring
+- **Real-time Status**: Live positions, speeds, delays, and operational status
 
 ## 🎨 UI Components
 
 ### Mission Control Dashboard Layout
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    Header with System Status                │
+│  Header: Alerts Dropdown | Network Status | System Status   │
 ├─────────────────────────────────────┬───────────────────────┤
 │                                     │                       │
-│           Live Train Map            │   AI Recommendations │
-│        (Interactive, Real-time)     │      Panel            │
+│    Interactive Railway Signaling    │   AI Recommendations │
+│     (Howrah-Kharagpur Line)         │    (Real-time Grid)   │
+│   • Live train positions (23)       │  • Priority signals  │
+│   • Signal states (auto-update)     │  • Route optimization│
+│   • Track section monitoring        │  • Maintenance alerts│
+│   • Pan/zoom controls               │  • Impact metrics    │
 │                                     │                       │
-├─────────────────────────────────────┼───────────────────────┤
-│        Status Dashboard             │    Alerts Panel      │
-│    (KPIs, Charts, Metrics)         │   (Notifications)     │
 └─────────────────────────────────────┴───────────────────────┘
 ```
 
 ### Key Components
-- **TrainMap**: Interactive map with train markers and station indicators
-- **AIRecommendations**: Real-time AI suggestions with accept/reject actions
-- **StatusDashboard**: KPI cards and analytics charts
-- **AlertsPanel**: System alerts and notifications
-- **SimulationModal**: What-if scenario testing
-- **Header**: System status and navigation
+- **InteractiveRailwaySignaling**: SVG-based HWH-KGP line visualization with live trains
+- **AIRecommendations**: Grid layout with tailored railway optimization suggestions
+- **NetworkStatusDropdown**: Comprehensive network metrics in header dropdown
+- **AlertsDropdown**: System alerts and notifications accessible from header
+- **Header**: System branding, dropdowns, and operational status display
 
 ## 🔧 Configuration
 
@@ -133,11 +124,12 @@ colors: {
 }
 ```
 
-### Map Configuration
-To use real Mapbox maps, add your token to environment variables:
-```bash
-NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=pk.your_token_here
-```
+### Data Configuration
+The system uses real-time simulation data for the Howrah-Kharagpur line:
+- Train positions update every 5 seconds
+- Signal states automatically adjust based on train proximity  
+- Performance metrics calculated from live train data
+- All recommendations based on actual railway operational scenarios
 
 ## 📱 Responsive Design
 
@@ -159,31 +151,12 @@ npm run build
 npm start
 ```
 
-### Docker (Coming Soon)
+### Vercel Deployment
+The application is optimized for Vercel deployment:
 ```bash
-docker build -t railway-mission-control .
-docker run -p 3000:3000 railway-mission-control
+npm run build
+# Deploy to Vercel or any Next.js hosting platform
 ```
-
-## 🔮 Upcoming Features
-
-### Backend Integration
-- [ ] FastAPI backend with WebSocket real-time updates
-- [ ] AI agent system with LangGraph
-- [ ] PostgreSQL database integration
-- [ ] Redis message queue for agent communication
-
-### Enhanced AI Features
-- [ ] Machine learning models for delay prediction
-- [ ] Advanced route optimization algorithms
-- [ ] Weather integration for proactive planning
-- [ ] Passenger flow optimization
-
-### Advanced UI Features
-- [ ] 3D train visualization
-- [ ] Voice commands and alerts
-- [ ] Multi-language support
-- [ ] Custom dashboard layouts
 
 ## 🤝 Contributing
 
@@ -199,12 +172,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Indian Railways for inspiration
-- Mission control interfaces from aerospace industry
+- Indian Railways Howrah-Kharagpur line for real-world inspiration
+- Railway signaling systems and control room interfaces
 - Open source community for amazing tools and libraries
 
 ---
 
-**Built with ❤️ for the future of railway transportation**
+**Built with ❤️ for intelligent railway operations**
 
-*Experience the next generation of railway traffic management with AI-powered optimization and real-time control.*
+*Real-time railway traffic management with AI-powered optimization for the Howrah-Kharagpur corridor.*
