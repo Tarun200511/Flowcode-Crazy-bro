@@ -128,24 +128,23 @@ export function StatusDashboard() {
   ];
 
   return (
-    <div className="h-full flex flex-col bg-control-panel">
+    <div className="h-full flex flex-col bg-control-panel overflow-hidden">
       {/* Header */}
-      <div className="p-4 border-b border-control-border">
+      <div className="p-3 border-b border-control-border flex-shrink-0">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-lg font-semibold text-white">Network Status</h2>
             <p className="text-xs text-gray-400">Real-time performance metrics</p>
           </div>
-          <div className="flex items-center space-x-2">
-            <div className="status-indicator status-green"></div>
-            <span className="text-xs text-status-green">OPERATIONAL</span>
+          <div className="text-xs text-gray-400">
+            Last updated: {new Date().toLocaleTimeString()}
           </div>
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4">
+      <div className="flex-1 overflow-y-auto p-3 min-h-0">
         {/* KPI Cards */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-4 gap-2 mb-3">
           {kpiCards.map((kpi, index) => (
             <div key={index} className="kpi-card">
               <div className="flex items-center justify-between mb-2">
@@ -172,11 +171,11 @@ export function StatusDashboard() {
         </div>
 
         {/* Charts Grid */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-2">
           {/* Delay Trend Chart */}
           <div className="mission-control-panel">
-            <h3 className="text-sm font-semibold text-white mb-3">Delay Trends</h3>
-            <ResponsiveContainer width="100%" height={120}>
+            <h3 className="text-xs font-semibold text-white mb-1">Delay Trends</h3>
+            <ResponsiveContainer width="100%" height={60}>
               <LineChart data={delayTrendData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#2a2a2b" />
                 <XAxis 
@@ -212,15 +211,15 @@ export function StatusDashboard() {
 
           {/* Train Status Distribution */}
           <div className="mission-control-panel">
-            <h3 className="text-sm font-semibold text-white mb-3">Train Status Distribution</h3>
-            <ResponsiveContainer width="100%" height={120}>
+            <h3 className="text-xs font-semibold text-white mb-1">Train Status Distribution</h3>
+            <ResponsiveContainer width="100%" height={60}>
               <PieChart>
                 <Pie
                   data={statusDistribution}
                   cx="50%"
                   cy="50%"
-                  innerRadius={30}
-                  outerRadius={50}
+                  innerRadius={15}
+                  outerRadius={25}
                   paddingAngle={2}
                   dataKey="value"
                 >

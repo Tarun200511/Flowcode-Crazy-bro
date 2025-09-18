@@ -2,10 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { InteractiveRailwaySignaling } from '@/components/RailwaySignaling';
-import { StatusDashboard } from '@/components/StatusDashboard';
-import { AIRecommendations } from '@/components/AIRecommendations';
-import { AlertsPanel } from '@/components/AlertsPanel';
 import { Header } from '@/components/Header';
+import { AIRecommendations } from '@/components/AIRecommendations';
 import { SimulationModal } from '@/components/SimulationModal';
 import { useTrainStore } from '@/store/useTrainStore';
 import { initializeDemoData } from '@/lib/demoData';
@@ -65,31 +63,18 @@ export default function Home() {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-control-bg">
+    <div className="h-screen flex flex-col bg-control-bg overflow-hidden">
       <Header />
       
-      {/* Top Panel - Network Status */}
-      <div className="h-64 border-b border-control-border">
-        <StatusDashboard />
-      </div>
-      
-      <div className="flex-1 flex overflow-hidden">
-        {/* Main Signaling Area - 60% width */}
-        <div className="flex-1 relative">
+      <div className="flex-1 flex min-h-0">
+        {/* Main Signaling Area - Left Half */}
+        <div className="flex-1 relative min-w-0 border-r border-control-border">
           <InteractiveRailwaySignaling />
         </div>
         
-        {/* Right Sidebar - 40% width */}
-        <div className="w-96 border-l border-control-border flex flex-col h-full">
-          {/* AI Recommendations - Top Half */}
-          <div className="flex-1 border-b border-control-border min-h-0">
-            <AIRecommendations />
-          </div>
-          
-          {/* Alerts Panel - Bottom Half */}
-          <div className="flex-1 min-h-0">
-            <AlertsPanel />
-          </div>
+        {/* AI Recommendations - Right Half */}
+        <div className="flex-1 min-w-0">
+          <AIRecommendations />
         </div>
       </div>
       

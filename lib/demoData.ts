@@ -329,19 +329,19 @@ export function generateDemoRecommendations(): AIRecommendation[] {
     {
       id: generateId(),
       agentId: 'agent-resolver',
-      agentName: 'Conflict Resolver',
-      type: 'reroute',
-      trainId: 'train-12951',
-      affectedTrains: ['HWH-KGP-12345', 'HWH-KGP-12346'],
-      title: 'Reroute Mumbai Rajdhani via Track 4',
-      description: 'Heavy congestion detected on main line near Nagpur. Suggest rerouting via alternate track to reduce delay by 20 minutes.',
+      agentName: 'HWH-KGP Traffic Controller',
+      type: 'priority',
+      trainId: 'train-12840',
+      affectedTrains: ['train-12840', 'train-58016'],
+      title: 'Priority Signal for Howrah Mail at Bagnan',
+      description: 'Howrah Mail (25min delay) approaching Bagnan. Grant priority over EMU Local to reduce passenger delay on long-distance service.',
       impact: {
-        delayReduction: 20,
-        congestionReduction: 15,
-        affectedTrains: 3,
-        estimatedSavings: 45
+        delayReduction: 8,
+        congestionReduction: 12,
+        affectedTrains: 2,
+        estimatedSavings: 15
       },
-      confidence: 87,
+      confidence: 94,
       timestamp: new Date().toISOString(),
       status: 'pending',
       urgency: 'high'
@@ -349,40 +349,62 @@ export function generateDemoRecommendations(): AIRecommendation[] {
     {
       id: generateId(),
       agentId: 'agent-scheduler',
-      agentName: 'Schedule Optimizer',
-      type: 'delay',
-      trainId: 'train-12002',
-      affectedTrains: ['HWH-KGP-12347'],
-      title: 'Delay Shatabdi by 3 minutes',
-      description: 'Allow freight train priority at Gwalior junction. Minimal passenger impact with significant network optimization.',
+      agentName: 'KGP Section Optimizer',
+      type: 'reroute',
+      trainId: 'train-18448',
+      affectedTrains: ['train-18448', 'train-22512'],
+      title: 'Reroute Hirakhand Express via Loop Line',
+      description: 'Congestion at Mecheda. Route Hirakhand via loop line to allow Kamakhya Express clear run. Saves 15 minutes overall.',
       impact: {
-        delayReduction: 0,
-        congestionReduction: 25,
-        affectedTrains: 1,
-        estimatedSavings: 30
+        delayReduction: 15,
+        congestionReduction: 20,
+        affectedTrains: 2,
+        estimatedSavings: 25
       },
-      confidence: 92,
-      timestamp: new Date(Date.now() - 120000).toISOString(),
+      confidence: 89,
+      timestamp: new Date(Date.now() - 180000).toISOString(),
       status: 'pending',
       urgency: 'medium'
     },
     {
       id: generateId(),
-      agentId: 'agent-predictor',
-      agentName: 'Congestion Predictor',
+      agentId: 'agent-maintenance',
+      agentName: 'Track Maintenance AI',
       type: 'maintenance',
-      title: 'Schedule Track Maintenance Window',
-      description: 'Optimal 4-hour maintenance window identified for Mumbai-Chennai line with minimal disruption.',
+      trainId: 'train-58018',
+      affectedTrains: ['train-58018'],
+      title: 'Goods Train Maintenance at Uluberia',
+      description: 'Goods train showing reduced speed (25 kmph). Schedule immediate inspection at Uluberia yard to prevent line blocking.',
       impact: {
         delayReduction: 0,
-        congestionReduction: 0,
-        affectedTrains: 6,
-        estimatedSavings: 120
+        congestionReduction: 30,
+        affectedTrains: 1,
+        estimatedSavings: 45
       },
-      confidence: 95,
-      timestamp: new Date(Date.now() - 300000).toISOString(),
+      confidence: 96,
+      timestamp: new Date(Date.now() - 60000).toISOString(),
       status: 'pending',
-      urgency: 'low'
+      urgency: 'high'
+    },
+    {
+      id: generateId(),
+      agentId: 'agent-predictor',
+      agentName: 'EMU Schedule Optimizer',
+      type: 'delay',
+      trainId: 'train-58014',
+      affectedTrains: ['train-58014', 'train-12872'],
+      title: 'Hold EMU at Shalimar for 2 minutes',
+      description: 'Ispat Express approaching HWH on time. Brief EMU hold prevents platform congestion and ensures smooth arrival.',
+      impact: {
+        delayReduction: 5,
+        congestionReduction: 18,
+        affectedTrains: 2,
+        estimatedSavings: 12
+      },
+      confidence: 91,
+      timestamp: new Date(Date.now() - 240000).toISOString(),
+      status: 'pending',
+      urgency: 'medium'
     }
   ];
 }

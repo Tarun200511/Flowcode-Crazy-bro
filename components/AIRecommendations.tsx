@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Bot, CheckCircle, XCircle, PlayCircle, Clock, TrendingUp } from 'lucide-react';
+import { Bot, CheckCircle, XCircle, Play, Clock, TrendingUp, Train, PlayCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTrainStore } from '@/store/useTrainStore';
 import { AIRecommendation } from '@/types';
@@ -170,51 +170,53 @@ export function AIRecommendations() {
     <div className="h-full flex flex-col bg-control-panel">
       {/* Header */}
       <div className="p-4 border-b border-control-border">
-        <div className="flex items-center space-x-2 mb-2">
+        <div className="flex items-center space-x-3">
           <Bot className="h-5 w-5 text-ai-glow" />
           <h2 className="text-lg font-semibold text-white">AI Recommendations</h2>
+          <span className="text-sm text-gray-400">Real-time optimization suggestions</span>
         </div>
-        <p className="text-xs text-gray-400">
-          Real-time optimization suggestions from AI agents
-        </p>
       </div>
 
-      {/* Recommendations List */}
-      <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 space-y-3 min-h-0" style={{ scrollBehavior: 'smooth' }}>
+      {/* Recommendations Grid */}
+      <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 min-h-0" style={{ scrollBehavior: 'smooth' }}>
         {recommendations.length === 0 ? (
-          <div className="text-center py-8 text-gray-400">
-            <Bot className="h-8 w-8 mx-auto mb-2 opacity-50" />
-            <p className="text-sm">No active recommendations</p>
+          <div className="flex items-center justify-center h-full text-gray-400">
+            <div className="text-center">
+              <Bot className="h-8 w-8 mx-auto mb-2 opacity-50" />
+              <p className="text-sm">No active recommendations</p>
+            </div>
           </div>
         ) : (
-          recommendations.map((rec) => (
-            <RecommendationCard
-              key={rec.id}
-              recommendation={rec}
-              onAccept={() => handleAccept(rec)}
-              onReject={() => handleReject(rec)}
-              onSimulate={() => handleSimulate(rec)}
-              getTypeIcon={getTypeIcon}
-              getTypeColor={getTypeColor}
-            />
-          ))
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 h-fit">
+            {recommendations.map((rec) => (
+              <RecommendationCard
+                key={rec.id}
+                recommendation={rec}
+                onAccept={() => handleAccept(rec)}
+                onReject={() => handleReject(rec)}
+                onSimulate={() => handleSimulate(rec)}
+                getTypeIcon={getTypeIcon}
+                getTypeColor={getTypeColor}
+              />
+            ))}
+          </div>
         )}
       </div>
 
       {/* Stats Footer */}
       <div className="p-4 border-t border-control-border">
-        <div className="grid grid-cols-2 gap-4 text-xs">
-          <div className="text-center">
+        <div className="grid grid-cols-2 gap-4 text-center">
+          <div>
             <div className="text-lg font-bold text-status-green">
               {recommendations.filter(r => r.status === 'accepted').length}
             </div>
-            <div className="text-gray-400">Accepted</div>
+            <div className="text-xs text-gray-400">Accepted</div>
           </div>
-          <div className="text-center">
-            <div className="text-lg font-bold text-ai-glow">
+          <div>
+            <div className="text-lg font-bold text-status-blue">
               {recommendations.filter(r => r.status === 'pending').length}
             </div>
-            <div className="text-gray-400">Pending</div>
+            <div className="text-xs text-gray-400">Pending</div>
           </div>
         </div>
       </div>
@@ -243,38 +245,25 @@ function RecommendationCard({
 
   return (
     <div className={`ai-suggestion-card ${isProcessing ? 'opacity-60' : ''}`}>
-      {/* Header */}
-      <div className="flex items-start justify-between mb-2">
-        <div className="flex items-center space-x-2">
-          <span className="text-lg">{getTypeIcon(recommendation.type)}</span>
-          <div>
-            <div className="flex items-center space-x-2">
-              <span className={`text-xs font-medium ${getTypeColor(recommendation.type)}`}>
-                {recommendation.type.toUpperCase()}
-              </span>
-              <span className={`text-xs ${getUrgencyColor(recommendation.urgency)}`}>
-                {recommendation.urgency.toUpperCase()}
-              </span>
-            </div>
-            <div className="text-xs text-gray-400">
-              {recommendation.agentName}
-            </div>
-          </div>
+      {/* Compact Header */}
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center space-x-1">
+          <span className="text-sm">{getTypeIcon(recommendation.type)}</span>
+          <span className={`text-xs font-medium ${getTypeColor(recommendation.type)}`}>
+            {recommendation.type.toUpperCase()}
+          </span>
+          <span className={`text-xs px-1 rounded ${getUrgencyColor(recommendation.urgency)}`}>
+            {recommendation.urgency === 'high' ? '🔴' : recommendation.urgency === 'medium' ? '🟡' : '🟢'}
+          </span>
         </div>
-        
-        <div className="text-right">
-          <div className="text-xs text-ai-glow font-mono">
-            {recommendation.confidence}% confidence
-          </div>
-          <div className="text-xs text-gray-400">
-            {formatDateTime(recommendation.timestamp)}
-          </div>
+        <div className="text-xs text-ai-glow font-mono">
+          {recommendation.confidence}%
         </div>
       </div>
 
       {/* Content */}
       <div className="mb-3">
-        <h4 className="text-sm font-medium text-white mb-1">
+        <h4 className="text-sm font-medium text-white mb-2">
           {recommendation.title}
         </h4>
         <p className="text-xs text-gray-300 leading-relaxed">
@@ -282,26 +271,19 @@ function RecommendationCard({
         </p>
       </div>
 
-      {/* Impact Metrics */}
-      <div className="grid grid-cols-2 gap-2 mb-3 text-xs">
-        <div className="bg-control-bg rounded p-2">
-          <div className="flex items-center space-x-1">
-            <Clock className="h-3 w-3 text-status-green" />
-            <span className="text-gray-400">Delay Reduction</span>
-          </div>
-          <div className="text-status-green font-medium">
-            {recommendation.impact.delayReduction}m
-          </div>
+      {/* Compact Impact Metrics */}
+      <div className="flex justify-between mb-2 text-xs">
+        <div className="flex items-center space-x-1">
+          <Clock className="h-3 w-3 text-status-green" />
+          <span className="text-status-green font-medium">{recommendation.impact.delayReduction}m</span>
         </div>
-        
-        <div className="bg-control-bg rounded p-2">
-          <div className="flex items-center space-x-1">
-            <TrendingUp className="h-3 w-3 text-status-blue" />
-            <span className="text-gray-400">Congestion</span>
-          </div>
-          <div className="text-status-blue font-medium">
-            -{recommendation.impact.congestionReduction}%
-          </div>
+        <div className="flex items-center space-x-1">
+          <TrendingUp className="h-3 w-3 text-status-blue" />
+          <span className="text-status-blue font-medium">-{recommendation.impact.congestionReduction}%</span>
+        </div>
+        <div className="flex items-center space-x-1">
+          <Train className="h-3 w-3 text-status-orange" />
+          <span className="text-status-orange font-medium">{recommendation.impact.affectedTrains}</span>
         </div>
       </div>
 
