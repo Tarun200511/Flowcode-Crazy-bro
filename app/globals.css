@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 200 100% 50%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 200 100% 50%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-control-bg text-foreground font-mono;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .mission-control-panel {
+    @apply bg-control-panel border border-control-border rounded-lg p-4 shadow-lg;
+  }
+  
+  .status-indicator {
+    @apply w-3 h-3 rounded-full animate-pulse;
+  }
+  
+  .status-green {
+    @apply bg-status-green shadow-status-green/50;
+  }
+  
+  .status-orange {
+    @apply bg-status-orange shadow-status-orange/50;
+  }
+  
+  .status-red {
+    @apply bg-status-red shadow-status-red/50;
+  }
+  
+  .ai-suggestion-card {
+    @apply mission-control-panel border-ai-glow/30 hover:border-ai-glow/60 transition-all duration-300;
+  }
+  
+  .ai-suggestion-card:hover {
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+  }
+  
+  .kpi-card {
+    @apply mission-control-panel hover:bg-control-border/50 transition-all duration-300;
+  }
+  
+  .control-button {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-200 border;
+  }
+  
+  .control-button-accept {
+    @apply control-button bg-status-green/20 border-status-green text-status-green hover:bg-status-green hover:text-black;
+  }
+  
+  .control-button-reject {
+    @apply control-button bg-status-red/20 border-status-red text-status-red hover:bg-status-red hover:text-white;
+  }
+  
+  .control-button-simulate {
+    @apply control-button bg-status-blue/20 border-status-blue text-status-blue hover:bg-status-blue hover:text-white;
+  }
+}
+
+/* Mapbox overrides for dark theme */
+.mapboxgl-popup-content {
+  @apply bg-control-panel border border-control-border text-foreground rounded-lg;
+}
+
+.mapboxgl-popup-tip {
+  @apply border-t-control-panel;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-control-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-control-border rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-ai-glow/50;
+}
+
+/* Loading animations */
+@keyframes data-stream {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+.data-stream {
+  animation: data-stream 2s ease-in-out infinite;
+}
+
+/* Train marker pulse */
+.train-marker {
+  @apply relative;
+}
+
+.train-marker::after {
+  content: '';
+  @apply absolute inset-0 rounded-full animate-ping;
+  background: inherit;
+  opacity: 0.3;
+}
